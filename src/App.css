@@ -1,38 +1,257 @@
-.App {
+body {
+  background-image: url("http://localhost:3000/img/background.jpg");
+  background-size: cover;
+}
+
+.title {
+  color: #f2f2f2;
+  font-family: Georgia, serif;
+}
+
+.sub-title {
+  font-family: serif;
+}
+
+.welcome {
+  color: #f2f2f2;
+  font-family: Georgia, serif;
+  text-align: center;
+  margin-top: 20%;
+}
+
+.selectHorse {
+  background-color: #282c34;
+  text-align: center;
+  padding: 12%;
+  justify-content: center;
+}
+
+.container-game {
+  text-align: center;
+  color: white;
+  max-width: 100%;
+}
+
+.card-horse {
+  width: 200px;
+  margin: 1%;
+  border-radius: 2%;
+}
+
+.card-horse:hover {
+  border: 2px solid;
+  border-color: rgb(255, 26, 10);
+}
+
+.card {
+  width: 3cm;
+  height: 5cm;
+  position: static;
+  top: 20px;
+  display: block;
+  margin-left: .5%;
+  margin-top: .5%;
+}
+
+.row {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(22, 180, 30);
+  border-color: red;
+  border: 10px;
+}
+
+.card-game {
+  width: min-content;
+  height: 120px;
+  position: relative;
+}
+
+.card-game-revel {
+  width: 190px;
+  height: 270px;
+  position: relative;
+}
+
+.deck {
+  width: 90px;
+  height: 130px;
+  position: relative;
+  margin-left: -80px;
+  align-items: end;
+}
+
+div {
+  min-width: 100%; 
+}
+
+table {
+  border-color: rgb(255, 255, 255);
+  min-width: 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.buttons-inline{
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	padding: .5%;
 }
 
-.App-link {
-  color: #61dafb;
+td {
+  border: 2px solid;
+  border-color: rgb(121, 0, 0);
+  width: max-content;
+  height: max-content;
+  background-color: rgba(54, 0, 0, 0.918);
+  border-radius: 10%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.td-but {
+  border: 2px solid;
+  border-color: rgb(194, 165, 0);
+  width: max-content;
+  height: max-content;
+  background-color: rgba(78, 67, 1, 0.801);
+  border-radius: 10%;
+}
+
+th {
+  width: min-content;
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 90deg;
+  inherits: true;
+}
+
+@property --gradX {
+  syntax: '<percentage>';
+  initial-value: 50%;
+  inherits: true;
+}
+
+@property --gradY {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: true;
+}
+
+:root {
+  --d: 2500ms;
+  --angle: 90deg;
+  --gradX: 100%;
+  --gradY: 50%;
+  --c1: rgba(168, 239, 255, 1);
+  --c2: rgba(168, 239, 255, 0.1);
+  cursor: url(http://localhost:3000/img/pointer.cur), auto;
+}
+
+.selection {
+  font-size: 3vw;
+  margin: max(1rem, 1vw);
+  border: 0.35rem solid;
+  padding: 1vw;
+  width: 200px;
+  filter: grayscale(100%);
+  opacity: 0.75;
+}
+
+.selection:hover {
+  font-size: 3vw;
+  margin: max(1rem, 1vw);
+  border: 0.35rem solid;
+  padding: 1vw;
+  animation: borderRotate var(--d) linear infinite forwards;
+  border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+  width: 200px;
+  filter: grayscale(0%);
+  opacity: 10;
+}
+
+.box:hover {
+  --c1: rgb(42, 253, 0);
+}
+
+.box {
+  font-size: 3vw;
+  margin: max(1rem, 1vw);
+  border: 0.35rem solid;
+  padding: 1vw;
+  border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+  animation: borderRotate var(--d) linear infinite forwards;
+  width: 200px;
+}
+
+.wrapper {
+  min-width: min(40rem, 100%);
+}
+
+.box:nth-child(2) {
+  border-image: radial-gradient(ellipse at var(--gradX) var(--gradY), var(--c1), var(--c1) 10%, var(--c2) 40%) 30;
+  animation: borderRadial var(--d) linear infinite forwards;
+}
+
+@keyframes borderRotate {
+  100% {
+    --angle: 420deg;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@keyframes borderRadial {
+  20% {
+    --gradX: 100%;
+    --gradY: 50%;
   }
+
+  40% {
+    --gradX: 100%;
+    --gradY: 100%;
+  }
+
+  60% {
+    --gradX: 50%;
+    --gradY: 100%;
+  }
+
+  80% {
+    --gradX: 0%;
+    --gradY: 50%;
+  }
+
+  100% {
+    --gradX: 50%;
+    --gradY: 0%;
+  }
+}
+
+html {
+  min-height: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  min-width: 100%;
+  width: 100%;
+}
+
+footer {
+  background-color: rgb(41, 0, 0);
+  position:absolute;
+  color: #fff;
+  text-align: center;
+  font-size: x-small;
+  bottom: 0;  
+  height: min-content;
+  width:100%;  
+  margin-bottom: 0%;
+}
+
+h3 {
+  color: #fff;
+  font-family: serif;
 }

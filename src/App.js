@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Welcome from './Welcome';
+import SelectHorse from './Select';
+import SelectedHorse from './SelectedHorse';
+import StartGame from './StartGame';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Winner from './Winner';
 
-function App() {
+export default function App() {
+
+  const onSelectHorse = (selected) => {
+    window.location.href = `/selected-horse/${selected}`;
+  }
+
+  const onSelectHorseAgain = () => {
+    window.location.href = "/select-horse";
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Welcome />} />
+        <Route path='/select-horse' element={<SelectHorse onSelectHorse={onSelectHorse} />} />
+        <Route path='/selected-horse/:id' element={<SelectedHorse onSelectHorseAgain={onSelectHorseAgain} />} />
+        <Route path='/start-game/:id' element={<StartGame />} />
+        <Route path='/winner-game/:selected/:winner/:cardwin' element={<Winner />}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
